@@ -1,74 +1,88 @@
-SCP: Secret Laboratory Dedicated Server + Pterodactyl
+🧪 SCP: Secret Laboratory Dedicated Server + Pterodactyl
 
-A quick guide to installing the SCP: Secret Laboratory Dedicated Server on a VPS using Pterodactyl Panel + Wings.
+A quick and easy-to-follow guide to installing SCP: Secret Laboratory Dedicated Server on a VPS using Pterodactyl Panel + Wings.
 
-⚠️ This guide has been tested on Debian 13. Installation steps may differ on other operating systems.
+«⚠️ This guide has been tested on Debian 13.
+Installation steps may differ on other operating systems.»
+
+---
 
 1. VPS Preparation
 
-Connect via SSH:
+Connect to your VPS via SSH:
 
-```
 ssh root@YOUR_IP
-```
 
-Update the system:
+Update the system and install basic utilities:
 
-```
-apt update && apt upgrade -y apt install -y curl wget sudo 2. Pterodactyl Installation
-```
+apt update && apt upgrade -y
+apt install -y curl wget sudo
 
-Run the installer:
+---
 
-```
+2. Pterodactyl Installation
+
+Run the Pterodactyl installer:
+
 bash <(curl -s https://pterodactyl-installer.se)
-```
+
 Select:
 
 2) Install both Panel and Wings
 
-During installation, specify the following:
+During the installation, specify the following:
 
-```
-Database password — your password 
-Timezone — Europe/Moscow 
-Email — your email 
-Admin login/password — admin credentials FQDN — domain or IP 
-SSL — y (if using a domain) 
+Database password — your database password
+Timezone — Europe/Moscow
+Email — your email address
+Admin login/password — your administrator credentials
+FQDN — your domain or IP address
+SSL — y (if using a domain)
 Firewall — y
-```
 
-After installation, open the panel:
+After the installation is complete, open the panel:
 
-```
-https://YOUR_DOMAIN 3. Creating a Node
-```
+https://YOUR_DOMAIN
 
-In the panel:
+---
 
-```
+3. Creating a Node
+
+In the Pterodactyl panel, open:
+
 Admin Panel → Locations → Create New
-```
 
 Create a Location, for example:
 
-Short Code: local Description: Local server
+Short Code: local
+Description: Local server
 
-Then:
+Then open:
 
 Admin Panel → Nodes → Create New
 
-Example:
+Example configuration:
 
-Name: Node-01 Location: local FQDN: YOUR_DOMAIN_OR_IP Daemon Port: 8080 SFTP Port: 2022
+Name: Node-01
+Location: local
+FQDN: YOUR_DOMAIN_OR_IP
+Daemon Port: 8080
+SFTP Port: 2022
 
-Set RAM and Disk values ​​according to your VPS specifications. After creating the Node, open the Configuration, copy the configuration data, and paste it into:
+Set the RAM and Disk values according to your VPS specifications.
+
+After creating the Node, open the Configuration tab and copy the configuration data.
+
+Open the Wings configuration file:
 
 nano /etc/pterodactyl/config.yml
 
+Paste the configuration and save the file.
+
 Restart Wings:
 
-systemctl restart wings systemctl enable wings
+systemctl restart wings
+systemctl enable wings
 
 Check the status:
 
@@ -76,21 +90,32 @@ systemctl status wings
 
 It should show:
 
-active (running) 4. Allocation
+Active: active (running)
+
+---
+
+4. Allocation
 
 Open:
 
 Admin Panel → Nodes → Node-01 → Allocations
 
-Add:
+Add an allocation:
 
-IP: 0.0.0.0 Port: 7777
+IP: 0.0.0.0
+Port: 7777
 
-For additional servers, you can use:
+For additional SCP:SL servers, you can use separate ports:
 
-7778 7779 7780 5. SCP:SL Egg
+7778
+7779
+7780
 
-Create:
+---
+
+5. SCP:SL Egg
+
+Create a new Nest:
 
 Admin Panel → Nests → Create New
 
@@ -98,67 +123,145 @@ For example:
 
 Name: SCP:SL
 
-Then, import your JSON Egg via:
+Then import your prepared JSON Egg using:
 
 Import Egg
 
-Use your prepared .json file. The Egg settings must match the SCP:SL version being used.
+«📦 Use your own prepared ".json" Egg file.»
 
-6. Creating the server
+Make sure that the Egg configuration matches the SCP: Secret Laboratory version you are going to use.
+
+---
+
+6. Creating the Server
+
+Open:
 
 Servers → Create New
 
 Select:
 
-Nest: SCP:SL Egg: SCP:SL Memory: 4096 MB Disk: 10 GB+ Allocation: 7777
+Nest: SCP:SL
+Egg: SCP:SL
+Memory: 4096 MB
+Disk: 10 GB+
+Allocation: 7777
 
-Create the server and click Start.
+Create the server and click:
 
-Pterodactyl will automatically install the server via SteamCMD.
+Start
+
+Pterodactyl will automatically install the server using SteamCMD.
+
+«⏳ The first installation may take some time.»
+
+---
 
 7. LabAPI
 
-After installing SCP:SL, use the appropriate LabAPI structure.
+After installing SCP:SL, use the appropriate LabAPI structure for your version.
 
-LabAPI plugins are usually uploaded to:
+LabAPI plugins are usually placed in:
+
+LabAPI/
+└── plugins/
+    └── global/
+        ├── Plugin1.dll
+        ├── Plugin2.dll
+        └── Plugin3.dll
+
+Upload your ".dll" plugin files to:
 
 LabAPI/plugins/global/
 
-Restart the server after uploading the .dll file.
+Restart the server after uploading the plugins.
 
-⚠️ The plugin must be compatible with the SCP:SL and LabAPI versions.
+«⚠️ The plugin must be compatible with both your SCP:SL and LabAPI versions.»
+
+---
 
 8. EXILED
 
-If EXILED is used instead of LabAPI, install the EXILED version compatible with your SCP:SL version.
+If you are using EXILED, install the EXILED version compatible with your SCP:SL version.
 
-After installation, place EXILED plugins in:
+EXILED plugins are placed in:
 
-EXILED/Plugins/
+EXILED/
+└── Plugins/
+    ├── Plugin1.dll
+    └── Plugin2.dll
 
-Configurations:
+Configuration files are located in:
 
-EXILED/Configs/
+EXILED/
+└── Configs/
 
-⚠️ Do not install LabAPI and EXILED plugins without checking for compatibility. They are different modding ecosystems. 9. Opening ports
+«⚠️ Check plugin compatibility before installation. LabAPI and EXILED are different modding ecosystems, and plugins designed for one framework should not automatically be assumed to work with the other.»
 
-If using UFW:
+---
 
-```
-ufw allow 7777/tcp ufw allow 7777/udp ufw allow 8080/tcp ufw allow 2022/tcp
-```
+9. Opening Ports
 
-Check status:
+If you are using UFW, allow the required ports:
 
-ufw status 10. Done
+ufw allow 7777/tcp
+ufw allow 7777/udp
+ufw allow 8080/tcp
+ufw allow 2022/tcp
 
-After startup:
+Check the firewall status:
 
-```
-VPS ├── Pterodactyl Panel ├── Wings └── SCP: Secret Laboratory ├── LabAPI └── Plugins
-```
-The server can now be fully managed via Pterodactyl:
+ufw status
 
-start/stop; restart; console; files; plugins; multiple SCP:SL servers on a single VPS.
+«💡 If you use a different SCP:SL port, replace "7777" with your chosen port.»
 
-⚠️ SCP:SL, LabAPI, and EXILED are constantly being updated. Check version compatibility before installation.
+---
+
+10. Done! 🎉
+
+After successful installation, your setup will look like:
+
+VPS
+├── Pterodactyl Panel
+├── Wings
+└── SCP: Secret Laboratory
+    ├── LabAPI
+    │   └── Plugins
+    └── EXILED
+        ├── Plugins
+        └── Configs
+
+The server can now be managed through Pterodactyl:
+
+- ▶️ Start / Stop
+- 🔄 Restart
+- 🖥️ Console
+- 📁 File management
+- 🔌 Plugin management
+- 🌐 Multiple SCP:SL servers on one VPS
+
+---
+
+⚠️ Important
+
+«SCP:SL, LabAPI, and EXILED are constantly being updated.
+
+Always check version compatibility before installing the server, framework, or plugins.»
+
+Make sure the following versions are compatible:
+
+SCP:SL
+   ↓
+LabAPI / EXILED
+   ↓
+Plugins
+
+«⚠️ Game, API, and plugin versions must be compatible with each other.»
+
+---
+
+⭐ Support
+
+If this guide was useful, consider giving this repository a ⭐.
+
+Made for the SCP: Secret Laboratory community 🧪
