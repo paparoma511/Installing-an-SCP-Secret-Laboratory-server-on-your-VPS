@@ -69,11 +69,13 @@ Admin Panel → Nodes → Create New
 
 Example configuration:
 
+```
 Name: Node-01
 Location: local
 FQDN: YOUR_DOMAIN_OR_IP
 Daemon Port: 8080
 SFTP Port: 2022
+```
 
 Set the RAM and Disk values according to your VPS specifications.
 
@@ -112,14 +114,18 @@ Admin Panel → Nodes → Node-01 → Allocations
 
 Add an allocation:
 
+```
 IP: 0.0.0.0
 Port: 7777
+```
 
 For additional SCP:SL servers, you can use separate ports:
 
+```
 7778
 7779
 7780
+```
 
 ---
 
@@ -151,11 +157,13 @@ Servers → Create New
 
 Select:
 
+```
 Nest: SCP:SL
 Egg: SCP:SL
 Memory: 4096 MB
 Disk: 10 GB+
 Allocation: 7777
+```
 
 Create the server and click:
 
@@ -229,7 +237,9 @@ ufw allow 2022/tcp
 
 Check the firewall status:
 
+```
 ufw status
+```
 
 «💡 If you use a different SCP:SL port, replace "7777" with your chosen port.»
 
