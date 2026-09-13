@@ -8,11 +8,15 @@ A quick guide to installing the SCP: Secret Laboratory Dedicated Server on a VPS
 
 Connect via SSH:
 
+```
 ssh root@YOUR_IP
+```
 
 Update the system:
 
+```
 apt update && apt upgrade -y apt install -y curl wget sudo 2. Pterodactyl Installation
+```
 
 Run the installer:
 
@@ -25,15 +29,26 @@ Select:
 
 During installation, specify the following:
 
-Database password — your password Timezone — Europe/Moscow Email — your email Admin login/password — admin credentials FQDN — domain or IP SSL — y (if using a domain) Firewall — y
+```
+Database password — your password 
+Timezone — Europe/Moscow 
+Email — your email 
+Admin login/password — admin credentials FQDN — domain or IP 
+SSL — y (if using a domain) 
+Firewall — y
+```
 
 After installation, open the panel:
 
+```
 https://YOUR_DOMAIN 3. Creating a Node
+```
 
 In the panel:
 
+```
 Admin Panel → Locations → Create New
+```
 
 Create a Location, for example:
 
