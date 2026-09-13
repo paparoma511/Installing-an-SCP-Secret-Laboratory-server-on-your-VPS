@@ -30,26 +30,6 @@ Complete installation and configuration guide.
 
 ---
 
-📁 Repository Structure / Структура репозитория
-
-📦 SCP-SL-Server-Guide
-│
-├── 📄 README.md
-│   └── 🇷🇺🇬🇧 Главная страница / Main page
-│
-├── 📄 README_RU.md
-│   └── 🇷🇺 Полное руководство на русском
-│
-├── 📄 README_EN.md
-│   └── 🇬🇧 Complete guide in English
-│
-└── 📄 egg.json
-    └── 📦 Egg Pterodactyl для SCP:SL
-
-«💡 Название "egg.json" можно заменить на фактическое имя вашего Egg-файла.»
-
----
-
 💻 Recommended OS / Рекомендуемая ОС
 
 🇷🇺 Debian 13 рекомендуется для данного руководства.
