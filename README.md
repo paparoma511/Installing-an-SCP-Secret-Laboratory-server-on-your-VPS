@@ -1,5 +1,3 @@
-Understood, let's start from scratch. Here is a complete, step-by-step guide.
-
 1. VPS Preparation
 
 1.1. Connect to the server via SSH as root:
