@@ -16,8 +16,9 @@ apt update && apt upgrade -y apt install -y curl wget sudo 2. Pterodactyl Instal
 
 Run the installer:
 
+```
 bash <(curl -s https://pterodactyl-installer.se)
-
+```
 Select:
 
 2) Install both Panel and Wings
@@ -128,7 +129,9 @@ EXILED/Configs/
 
 If using UFW:
 
+```
 ufw allow 7777/tcp ufw allow 7777/udp ufw allow 8080/tcp ufw allow 2022/tcp
+```
 
 Check status:
 
@@ -136,8 +139,9 @@ ufw status 10. Done
 
 After startup:
 
+```
 VPS ├── Pterodactyl Panel ├── Wings └── SCP: Secret Laboratory ├── LabAPI └── Plugins
-
+```
 The server can now be fully managed via Pterodactyl:
 
 start/stop; restart; console; files; plugins; multiple SCP:SL servers on a single VPS.
