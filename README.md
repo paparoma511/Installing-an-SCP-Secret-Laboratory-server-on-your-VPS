@@ -72,15 +72,15 @@ LabAPI / EXILED
    ↓
 Plugins
 
-«⚠️ Версии игры, API и плагинов должны быть совместимы между собой.
-⚠️ Game, API and plugin versions must be compatible with each other.»
+«⚠️ RU: Версии игры, API и плагинов должны быть совместимы между собой.
+⚠️ EN: Game, API and plugin versions must be compatible with each other.»
 
 ---
 
 ⭐ Support / Поддержать проект
 
-🇷🇺 Если этот гайд оказался полезен, поставьте ⭐ репозиторию.
+🇷🇺 Если этот гайд оказался полезен, поставьте ⭐ этому репозиторию.
 
-🇬🇧 If this guide was useful, consider giving the repository a ⭐.
+🇬🇧 If this guide was useful, consider giving this repository a ⭐.
 
 Made for the SCP: Secret Laboratory community 🧪
