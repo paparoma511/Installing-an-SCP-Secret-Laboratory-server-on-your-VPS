@@ -11,12 +11,16 @@ Installation steps may differ on other operating systems.»
 
 Connect to your VPS via SSH:
 
+```
 ssh root@YOUR_IP
+```
 
 Update the system and install basic utilities:
 
+```
 apt update && apt upgrade -y
 apt install -y curl wget sudo
+```
 
 ---
 
@@ -24,7 +28,9 @@ apt install -y curl wget sudo
 
 Run the Pterodactyl installer:
 
+```
 bash <(curl -s https://pterodactyl-installer.se)
+```
 
 Select:
 
@@ -75,14 +81,18 @@ After creating the Node, open the Configuration tab and copy the configuration d
 
 Open the Wings configuration file:
 
+```
 nano /etc/pterodactyl/config.yml
+```
 
 Paste the configuration and save the file.
 
 Restart Wings:
 
+```
 systemctl restart wings
 systemctl enable wings
+```
 
 Check the status:
 
@@ -163,12 +173,14 @@ After installing SCP:SL, use the appropriate LabAPI structure for your version.
 
 LabAPI plugins are usually placed in:
 
+```
 LabAPI/
 └── plugins/
     └── global/
         ├── Plugin1.dll
         ├── Plugin2.dll
         └── Plugin3.dll
+```
 
 Upload your ".dll" plugin files to:
 
@@ -186,15 +198,19 @@ If you are using EXILED, install the EXILED version compatible with your SCP:SL 
 
 EXILED plugins are placed in:
 
+```
 EXILED/
 └── Plugins/
     ├── Plugin1.dll
     └── Plugin2.dll
+```
 
 Configuration files are located in:
 
+```
 EXILED/
 └── Configs/
+```
 
 «⚠️ Check plugin compatibility before installation. LabAPI and EXILED are different modding ecosystems, and plugins designed for one framework should not automatically be assumed to work with the other.»
 
@@ -204,10 +220,12 @@ EXILED/
 
 If you are using UFW, allow the required ports:
 
+```
 ufw allow 7777/tcp
 ufw allow 7777/udp
 ufw allow 8080/tcp
 ufw allow 2022/tcp
+```
 
 Check the firewall status:
 
@@ -221,6 +239,7 @@ ufw status
 
 After successful installation, your setup will look like:
 
+```
 VPS
 ├── Pterodactyl Panel
 ├── Wings
@@ -230,15 +249,18 @@ VPS
     └── EXILED
         ├── Plugins
         └── Configs
+```
 
 The server can now be managed through Pterodactyl:
 
+```
 - ▶️ Start / Stop
 - 🔄 Restart
 - 🖥️ Console
 - 📁 File management
 - 🔌 Plugin management
 - 🌐 Multiple SCP:SL servers on one VPS
+```
 
 ---
 
@@ -250,11 +272,13 @@ Always check version compatibility before installing the server, framework, or p
 
 Make sure the following versions are compatible:
 
+```
 SCP:SL
    ↓
 LabAPI / EXILED
    ↓
 Plugins
+```
 
 «⚠️ Game, API, and plugin versions must be compatible with each other.»
 
