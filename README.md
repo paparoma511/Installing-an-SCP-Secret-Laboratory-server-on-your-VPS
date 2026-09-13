@@ -65,12 +65,13 @@ Other operating systems may work, but the commands and installation process may 
 🇬🇧 Make sure your VPS has enough resources to run SCP:SL and Pterodactyl.
 
 Всегда проверяйте совместимость версий:
-
+```
 SCP:SL
    ↓
 LabAPI / EXILED
    ↓
 Plugins
+```
 
 «⚠️ RU: Версии игры, API и плагинов должны быть совместимы между собой.
 ⚠️ EN: Game, API and plugin versions must be compatible with each other.»
