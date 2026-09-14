@@ -11,12 +11,12 @@
 
 Подключитесь к VPS по SSH:
 
-ssh root@ВАШ_IP
+```ssh root@ВАШ_IP```
 
 Обновите систему и установите необходимые утилиты:
 
-apt update && apt upgrade -y
-apt install -y curl wget sudo
+```apt update && apt upgrade -y
+apt install -y curl wget sudo```
 
 ---
 
@@ -24,7 +24,7 @@ apt install -y curl wget sudo
 
 Запустите установщик Pterodactyl:
 
-bash <(curl -s https://pterodactyl-installer.se)
+```bash <(curl -s https://pterodactyl-installer.se)```
 
 Выберите:
 
@@ -32,17 +32,17 @@ bash <(curl -s https://pterodactyl-installer.se)
 
 Во время установки укажите:
 
-Пароль базы данных — ваш пароль
+```Пароль базы данных — ваш пароль
 Часовой пояс — Europe/Moscow
 Email — ваш email
 Логин/пароль администратора — данные администратора
 FQDN — ваш домен или IP-адрес
 SSL — y (если используется домен)
-Firewall — y
+Firewall — y```
 
 После завершения установки откройте панель:
 
-https://ВАШ_ДОМЕН
+``https://ВАШ_ДОМЕН```
 
 ---
 
@@ -50,24 +50,24 @@ https://ВАШ_ДОМЕН
 
 В панели Pterodactyl откройте:
 
-Admin Panel → Locations → Create New
+```Admin Panel → Locations → Create New```
 
 Создайте Location, например:
 
-Short Code: local
-Description: Local server
+```Short Code: local
+Description: Local server```
 
 Затем откройте:
 
-Admin Panel → Nodes → Create New
+```Admin Panel → Nodes → Create New```
 
 Пример конфигурации:
 
-Name: Node-01
+```Name: Node-01
 Location: local
 FQDN: ВАШ_ДОМЕН_ИЛИ_IP
 Daemon Port: 8080
-SFTP Port: 2022
+SFTP Port: 2022```
 
 Укажите значения RAM и Disk в соответствии с характеристиками вашего VPS.
 
@@ -75,22 +75,22 @@ SFTP Port: 2022
 
 Откройте конфигурационный файл Wings:
 
-nano /etc/pterodactyl/config.yml
+```nano /etc/pterodactyl/config.yml```
 
 Вставьте конфигурацию и сохраните файл.
 
 Перезапустите Wings:
 
-systemctl restart wings
-systemctl enable wings
+```systemctl restart wings
+systemctl enable wings```
 
 Проверьте статус:
 
-systemctl status wings
+```systemctl status wings```
 
 Должно отображаться:
 
-Active: active (running)
+```Active: active (running)```
 
 ---
 
@@ -98,18 +98,18 @@ Active: active (running)
 
 Откройте:
 
-Admin Panel → Nodes → Node-01 → Allocations
+```Admin Panel → Nodes → Node-01 → Allocations```
 
 Добавьте Allocation:
 
-IP: 0.0.0.0
-Port: 7777
+```IP: 0.0.0.0
+Port: 7777```
 
 Для дополнительных SCP:SL серверов можно использовать отдельные порты:
 
-7778
+```7778
 7779
-7780
+7780```
 
 ---
 
@@ -117,7 +117,7 @@ Port: 7777
 
 Создайте новый Nest:
 
-Admin Panel → Nests → Create New
+```Admin Panel → Nests → Create New```
 
 Например:
 
@@ -127,9 +127,7 @@ Name: SCP:SL
 
 Import Egg
 
-«📦 Используйте свой подготовленный файл ".json".»
-
-Убедитесь, что настройки Egg соответствуют используемой версии SCP: Secret Laboratory.
+«📦 Используйте свой подготовленный файл ".json" который я приложил в этоп репозитории.»
 
 ---
 
@@ -137,15 +135,15 @@ Import Egg
 
 Откройте:
 
-Servers → Create New
+```Servers → Create New```
 
 Выберите:
 
-Nest: SCP:SL
+```Nest: SCP:SL
 Egg: SCP:SL
 Memory: 4096 MB
 Disk: 10 GB+
-Allocation: 7777
+Allocation: 7777```
 
 Создайте сервер и нажмите:
 
@@ -163,16 +161,17 @@ Pterodactyl автоматически установит сервер чере�
 
 Плагины LabAPI обычно размещаются в:
 
-LabAPI/
+```LabAPI/
 └── plugins/
     └── global/
         ├── Plugin1.dll
         ├── Plugin2.dll
         └── Plugin3.dll
+```
 
 Загрузите ".dll"-файлы плагинов в:
 
-LabAPI/plugins/global/
+```home/container/.config/SCP Secret Laboratory/LabAPI/plugins/global/```
 
 После загрузки плагинов перезапустите сервер.
 
@@ -186,15 +185,22 @@ LabAPI/plugins/global/
 
 Плагины EXILED размещаются в:
 
-EXILED/
+```EXILED/
 └── Plugins/
     ├── Plugin1.dll
     └── Plugin2.dll
+```
 
 Конфигурационные файлы находятся в:
 
-EXILED/
+```EXILED/
 └── Configs/
+```
+
+Путь до папки EXILED:
+
+```home/container/.config/EXILED```
+
 
 «⚠️ Проверяйте совместимость плагинов перед установкой. LabAPI и EXILED — разные моддинг-экосистемы, поэтому плагины, предназначенные для одного фреймворка, не следует автоматически считать совместимыми с другим.»
 
@@ -204,14 +210,14 @@ EXILED/
 
 Если вы используете UFW, откройте необходимые порты:
 
-ufw allow 7777/tcp
+```ufw allow 7777/tcp
 ufw allow 7777/udp
 ufw allow 8080/tcp
-ufw allow 2022/tcp
+ufw allow 2022/tcp```
 
 Проверьте состояние Firewall:
 
-ufw status
+```ufw status```
 
 «💡 Если вы используете другой порт SCP:SL, замените "7777" на выбранный вами порт.»
 
@@ -221,7 +227,7 @@ ufw status
 
 После успешной установки структура будет выглядеть примерно так:
 
-VPS
+```VPS
 ├── Pterodactyl Panel
 ├── Wings
 └── SCP: Secret Laboratory
@@ -230,15 +236,18 @@ VPS
     └── EXILED
         ├── Plugins
         └── Configs
+```
 
 Теперь сервером можно управлять через Pterodactyl:
 
+```
 - ▶️ Запуск / остановка
 - 🔄 Перезапуск
 - 🖥️ Консоль
 - 📁 Управление файлами
 - 🔌 Управление плагинами
 - 🌐 Несколько SCP:SL серверов на одном VPS
+```
 
 ---
 
@@ -250,11 +259,11 @@ VPS
 
 Убедитесь, что следующие компоненты совместимы:
 
-SCP:SL
+```SCP:SL
    ↓
 LabAPI / EXILED
    ↓
-Plugins
+Plugins```
 
 «⚠️ Версии игры, API и плагинов должны быть совместимы между собой.»
 
