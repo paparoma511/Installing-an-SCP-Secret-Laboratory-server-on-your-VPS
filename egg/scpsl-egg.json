@@ -1,53 +1,41 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT MODIFY: FILE GENERATED FOR PTERODACTYL",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-11-18T14:02:28+01:00",
-    "name": "SCP:SL (waenaradev)",
-    "author": "custom-fixed",
-    "description": "Fixed Egg for SCP: Secret Laboratory using waenaradev Docker image",
-    "features": [
-        "steam_disk_space"
-    ],
+    "exported_at": "2026-09-14T08:30:00+00:00",
+    "name": "SCP: Secret Laboratory",
+    "author": "Nova",
+    "description": "SCP: Secret Laboratory Dedicated Server.",
+    "features": null,
     "docker_images": {
-        "waenaradev/scpsl-egg:latest": "waenaradev/scpsl-egg:latest"
+        "ghcr.io/ptero-eggs/yolks:mono_latest": "ghcr.io/ptero-eggs/yolks:mono_latest"
     },
     "file_denylist": [],
-    "startup": "cd /home/container && ./LocalAdmin {{SERVER_PORT}}",
+    "startup": "./LocalAdmin {{SERVER_PORT}}",
     "config": {
         "files": "{}",
-        "startup": "{\r\n    \"done\": \"Waiting for players..\"\r\n}",
+        "startup": "{\n    \"done\": \"Server is listening on port\",\n    \"userInteraction\": []\n}",
         "logs": "{}",
-        "stop": "EXIT"
+        "stop": "stop"
     },
     "scripts": {
         "installation": {
-            "script": "#!/bin/bash\r\necho \"Installation started...\"\r\necho \"This Docker image comes pre-configured with SCP:SL\"\r\necho \"Verifying installation...\"\r\n\r\n# Check if LocalAdmin exists in the container\r\nif [ ! -f /home/container/LocalAdmin ]; then\r\n    echo \"ERROR: LocalAdmin not found in Docker image\"\r\n    echo \"Please ensure the Docker image has SCP:SL installed correctly\"\r\n    exit 1\r\nfi\r\n\r\n# Make LocalAdmin executable\r\nchmod +x /home/container/LocalAdmin\r\necho \"LocalAdmin permissions set\"\r\n\r\necho \"-----------------------------------------\"\r\necho \"Installation completed successfully!\"\r\necho \"-----------------------------------------\"",
-            "container": "waenaradev/scpsl-egg:latest",
+            "script": "#!/bin/bash\nset -e\n\napt-get update\napt-get install -y curl wget ca-certificates lib32gcc-s1 tar gzip\n\nmkdir -p /mnt/server\nmkdir -p /mnt/server/steamcmd\n\ncd /mnt/server/steamcmd\n\necho \"Downloading SteamCMD...\"\n\nrm -f steamcmd.tar.gz\n\ncurl -L --fail -o steamcmd.tar.gz \\\n    https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz\n\necho \"Extracting SteamCMD...\"\ntar -xzf steamcmd.tar.gz\n\nchmod +x steamcmd.sh\n\ncd /mnt/server\n\necho \"Installing SCP: Secret Laboratory Dedicated Server...\"\n\n/mnt/server/steamcmd/steamcmd.sh \\\n    +force_install_dir /mnt/server \\\n    +login anonymous \\\n    +app_update 996560 validate \\\n    +quit\n\necho \"Cleaning SteamCMD installer files...\"\nrm -f /mnt/server/steamcmd/steamcmd.tar.gz\n\nif [ -f /mnt/server/LocalAdmin ]; then\n    chmod +x /mnt/server/LocalAdmin\nfi\n\nif [ -f /mnt/server/SCPSL ]; then\n    chmod +x /mnt/server/SCPSL\nfi\n\nmkdir -p /mnt/server/config\nmkdir -p /mnt/server/configs\nmkdir -p /mnt/server/AppData\n\necho \"\"\necho \"==============================================\"\necho \" SCP: Secret Laboratory installation complete\"\necho \"==============================================\"\necho \"Server files: /mnt/server\"\necho \"Startup: ./LocalAdmin {{SERVER_PORT}}\"\necho \"==============================================\"",
+            "container": "ghcr.io/ptero-eggs/installers:debian",
             "entrypoint": "bash"
         }
     },
     "variables": [
         {
             "name": "Server Port",
-            "description": "The port that the server will listen on",
+            "description": "The port used by the SCP: Secret Laboratory server.",
             "env_variable": "SERVER_PORT",
             "default_value": "7777",
             "user_viewable": true,
-            "user_editable": true,
+            "user_editable": false,
             "rules": "required|numeric|between:1024,65535",
-            "field_type": "text"
-        },
-        {
-            "name": "Auto Update",
-            "description": "Auto update the server on restart",
-            "env_variable": "AUTO_UPDATE",
-            "default_value": "1",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|boolean",
             "field_type": "text"
         }
     ]
